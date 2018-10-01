@@ -1,0 +1,18 @@
+@startuml
+start
+:Get configuration;
+:Show background;
+:Draw figure from configuration;
+:Move turtle in new place when user should start;
+while (Drawing) is (Not correct)
+  :Ask user about list of steps to draw;
+  :Draw figure from user input;
+  if (Is correct?) then (no)
+    :Inform user about incorrectly data;
+    :Clear;
+  else (yes)
+  endif
+endwhile
+:Inform user about winning;
+end
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+[*] --> Configuring
+Configuring --> Draw
+Draw --> Game
+
+state Configuring {
+  [*] --> FindRandomTask
+  FindRandomTask --> AskUserAboutGameType
+}
+@enduml

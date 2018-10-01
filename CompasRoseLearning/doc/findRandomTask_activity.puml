@@ -1,0 +1,17 @@
+@startuml
+start
+:Take path to folder;
+if (Folder has files) then (no)
+  end
+else (yes)
+  :Get random file;
+endif
+:Process file content into list;
+:Store list in memory;
+if (Ask user about game ask user about game type) then
+  :Game Write Figure to draw;
+else
+  :Game: Draw Figure;
+endif
+end
+@enduml
