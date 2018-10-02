@@ -22,48 +22,55 @@ class GameConfigure:
             self.gameData.append(data.split(";"))
         f.close()
 
-gameConfigure = GameConfigure("game_data")
-gameConfigure.loadRandomData()
-turtleWindow = turtle.Screen()
-turtle = turtle.Turtle()
-print gameConfigure.gameData
+class ComposeRoseGame:
+    def __init__(self):
+        self.configure = GameConfigure("game_data")
+        self.turtleWindow = turtle.Screen()
+        self.turtleRose = turtle.Turtle()
 
-def printTurtleStep(turtle, step, isSlant = False):
-    index=2
-    for x in range(step):
-        modulo = index % 2
-        turtle.pencolor((1*modulo,1*(modulo+1)%2,0))
-        index = modulo + 1
-        distanse = 10
-        if isSlant:
-            distanse = math.sqrt(2) * 10
-        turtle.forward(distanse)
+    def printTurtleStep(self, turtle, step, isSlant = False):
+        index=2
+        for x in range(step):
+            modulo = index % 2
+            self.turtleRose.pencolor((1*modulo,1*(modulo+1)%2,0))
+            index = modulo + 1
+            distanse = 10
+            if isSlant:
+                distanse = math.sqrt(2) * 10
+                self.turtleRose.forward(distanse)
 
-for step,direction in gameConfigure.gameData:
-    step = int(step)
-    if direction == "S":
-        turtle.setheading(270)
-        printTurtleStep(turtle,step, False)
-    elif direction == "NE":
-        turtle.setheading(45)
-        printTurtleStep(turtle,step,True)
-    elif direction == "E":
-        turtle.setheading(0)
-        printTurtleStep(turtle,step, False)
-    elif direction == "NW":
-        turtle.setheading(135)
-        printTurtleStep(turtle,step,True)
-    elif direction == "W":
-        turtle.setheading(180)
-        printTurtleStep(turtle,step, False)
-    elif direction == "SE":
-        turtle.setheading(315)
-        printTurtleStep(turtle,step,True)
-    elif direction == "SW":
-        turtle.setheading(225)
-        printTurtleStep(turtle,step,True)
-    else:
-        turtle.setheading(90)
-        printTurtleStep(turtle,step, False)
+    def drawSelectedPicture(self):
+        for step,direction in self.configure.gameData:
+            step = int(step)
+            if direction == "S":
+                self.turtleRose.setheading(270)
+                self.printTurtleStep(turtle,step, False)
+            elif direction == "NE":
+                self.turtleRose.setheading(45)
+                self.printTurtleStep(turtle,step,True)
+            elif direction == "E":
+                self.turtleRose.setheading(0)
+                self.printTurtleStep(turtle,step, False)
+            elif direction == "NW":
+                self.turtleRose.setheading(135)
+                self.printTurtleStep(turtle,step,True)
+            elif direction == "W":
+                self.turtleRose.setheading(180)
+                self.printTurtleStep(turtle,step, False)
+            elif direction == "SE":
+                self.turtleRose.setheading(315)
+                self.printTurtleStep(turtle,step,True)
+            elif direction == "SW":
+                self.turtleRose.setheading(225)
+                self.printTurtleStep(turtle,step,True)
+            else:
+                self.turtleRose.setheading(90)
+                self.printTurtleStep(turtle,step, False)
 
+    def play(self):
+        self.configure.loadRandomData()
+        self.drawSelectedPicture()
+
+game = ComposeRoseGame()
+game.play()
 input("Press Enter to continue...")
